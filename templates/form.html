@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diamond Price Prediction</title>
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 14px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #34495e;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2c80b4;
+    }
+
+    .diamond-img {
+      width: 70px;
+      margin-bottom: 10px;
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="{{ url_for('static', filename='diamond.png') }}" alt="Diamond Icon" class="diamond-img">
+  <h1><strong>Diamond Price Prediction 💎</strong></h1>
+
+  <form action="{{ url_for('predict_datapoint') }}" method="POST">
+
+    {% for field in ['carat', 'depth', 'table', 'x', 'y', 'z'] %}
+      <div class="form-group">
+        <label for="{{ field }}">{{ field|capitalize }}:</label>
+        <input type="text" id="{{ field }}" name="{{ field }}" placeholder="Enter {{ field }} value (float)">
+      </div>
+    {% endfor %}
+
+    <div class="form-group">
+      <label for="cut">Cut:</label>
+      <select id="cut" name="cut">
+        <option value="Fair">Fair</option>
+        <option value="Good">Good</option>
+        <option value="Very Good">Very Good</option>
+        <option value="Premium">Premium</option>
+        <option value="Ideal">Ideal</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="color">Color:</label>
+      <select id="color" name="color">
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+        <option value="H">H</option>
+        <option value="I">I</option>
+        <option value="J">J</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="clarity">Clarity:</label>
+      <select id="clarity" name="clarity">
+        <option value="I1">I1</option>
+        <option value="SI2">SI2</option>
+        <option value="SI1">SI1</option>
+        <option value="VS2">VS2</option>
+        <option value="VS1">VS1</option>
+        <option value="VVS2">VVS2</option>
+        <option value="VVS1">VVS1</option>
+        <option value="IF">IF</option>
+      </select>
+    </div>
+
+    <input type="submit" value="Predict Price">
+  </form>
+
+  {% if final_result %}
+    <div class="result">Estimated Price: ₹{{ final_result }}</div>
+  {% endif %}
+
+</body>
+</html>
