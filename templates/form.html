@@ -4,58 +4,66 @@
   <meta charset="UTF-8">
   <title>Diamond Price Prediction</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
       background-color: #f4f6f9;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 40px;
+      overflow: hidden;
     }
 
     h1 {
-      font-size: 26px;
+      font-size: 24px;
       color: #2c3e50;
-      margin-bottom: 20px;
+      margin: 10px 0;
     }
 
     form {
       background: white;
-      padding: 30px 40px;
+      padding: 20px 30px;
       border-radius: 14px;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 500px;
+      max-width: 450px;
+      overflow-y: auto;
     }
 
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
     label {
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       display: block;
       color: #34495e;
     }
 
     input, select {
       width: 100%;
-      padding: 10px;
-      font-size: 14px;
+      padding: 8px 10px;
+      font-size: 13px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      box-sizing: border-box;
     }
 
     input[type="submit"] {
-      margin-top: 20px;
-      padding: 12px;
+      margin-top: 12px;
+      padding: 10px;
       background-color: #3498db;
       color: white;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease;
@@ -66,15 +74,22 @@
     }
 
     .diamond-img {
-      width: 70px;
-      margin-bottom: 10px;
+      width: 60px;
+      margin-bottom: 8px;
     }
 
     .result {
-      margin-top: 25px;
-      font-size: 20px;
+      margin-top: 12px;
+      font-size: 18px;
       color: green;
       font-weight: bold;
+    }
+
+    @media screen and (max-height: 700px) {
+      form {
+        max-height: 80vh;
+        overflow-y: auto;
+      }
     }
   </style>
 </head>
